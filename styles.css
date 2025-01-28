@@ -75,6 +75,6 @@ h1 {
 
     .overlay {
         width: 20%; /* Adjust overlay size for smaller screens */
-        top: 25%; /* Ensure the vertical position remains the same */
+        top: 20%; /* Ensure the vertical position remains the same */
     }
 }
