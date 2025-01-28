@@ -33,7 +33,7 @@ body {
 
 .overlay {
     position: absolute;
-    top: 25%; /* Position midway between the middle and the top */
+    top: 15%; /* Position midway between the middle and the top */
     width: 15%; /* 10% + 5% = 15% */
     height: auto;
     object-fit: contain;
