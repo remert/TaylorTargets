@@ -48,7 +48,7 @@ h1 {
 .overlay {
     position: absolute;
     top: 25%; /* Position midway between the middle and the top */
-    width: 15%; /* 10% + 5% = 15% */
+    width: 10%; /* 15% - 5% = 10% */
     height: auto;
     object-fit: contain;
     opacity: 0.7;
@@ -74,7 +74,7 @@ h1 {
     }
 
     .overlay {
-        width: 20%; /* Adjust overlay size for smaller screens */
-        top: 20%; /* Ensure the vertical position remains the same */
+        width: 15%; /* 20% - 5% = 15% */
+        top: 25%; /* Ensure the vertical position remains the same */
     }
 }
