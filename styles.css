@@ -4,6 +4,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -15,6 +17,7 @@ h1 {
     justify-content: center;
     align-items: flex-start;
     width: 100%;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .product-selection {
@@ -50,4 +53,27 @@ h1 {
     object-fit: contain;
     opacity: 0.7;
     pointer-events: none; /* Ensure the overlay image doesn't interfere with interactions */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        align-items: center;
+    }
+
+    .product-selection {
+        flex: 0 0 auto; /* Allow the product selector to resize */
+        width: 100%; /* Full width on smaller screens */
+        margin: 10px 0; /* Adjust margin for better spacing */
+    }
+
+    .image-container {
+        max-width: 90%; /* Reduce max-width for smaller screens */
+        margin-left: 0; /* Remove left margin */
+    }
+
+    .overlay {
+        width: 20%; /* Adjust overlay size for smaller screens */
+    }
 }
