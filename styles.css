@@ -33,7 +33,8 @@ h1 {
 .image-container {
     position: relative;
     width: 100%;
-    max-width: 800px; /* Increase the max-width to make the environment image bigger */
+    max-width: 1000px; /* Increase the max-width to make the environment image bigger */
+    margin-left: -50px; /* Shift the image slightly to the left */
 }
 
 #environment {
