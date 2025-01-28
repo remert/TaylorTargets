@@ -33,7 +33,7 @@ h1 {
 .image-container {
     position: relative;
     width: 100%;
-    max-width: 600px;
+    max-width: 800px; /* Increase the max-width to make the environment image bigger */
 }
 
 #environment {
@@ -43,7 +43,7 @@ h1 {
 
 .overlay {
     position: absolute;
-    top: 43%; /* Position midway between the middle and the top */
+    top: 25%; /* Position midway between the middle and the top */
     width: 15%; /* 10% + 5% = 15% */
     height: auto;
     object-fit: contain;
