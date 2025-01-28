@@ -1,14 +1,13 @@
 function updateOverlay() {
-    const productSelect = document.getElementById('product');
     const overlaysContainer = document.getElementById('overlays');
     overlaysContainer.innerHTML = ''; // Clear previous overlays
 
-    const selectedOptions = Array.from(productSelect.selectedOptions);
-    const totalProducts = selectedOptions.length;
+    const selectedProducts = document.querySelectorAll('input[name="product"]:checked');
+    const totalProducts = selectedProducts.length;
 
-    selectedOptions.forEach((option, index) => {
+    selectedProducts.forEach((product, index) => {
         const overlayImage = document.createElement('img');
-        overlayImage.src = option.value;
+        overlayImage.src = product.value;
         overlayImage.className = 'overlay';
         overlayImage.style.left = `${(index + 1) / (totalProducts + 1) * 100}%`;
         overlayImage.style.transform = 'translateX(-50%)';
