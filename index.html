@@ -10,12 +10,19 @@
     <h1>Product Overlay</h1>
     <div class="container">
         <div class="product-selection">
-            <label for="product">Select products:</label>
-            <select id="product" multiple onchange="updateOverlay()">
-                <option value="myProduct1.png">Product 1</option>
-                <option value="myProduct2.png">Product 2</option>
-               Product3.png">Product 3</option>
-            </select>
+            <label>Select products:</label>
+            <div>
+                <input type="checkbox" id="product1" name="product" value="myProduct1.png" onchange="updateOverlay()">
+                <label for="product1">Product 1</label>
+            </div>
+            <div>
+                <input type="checkbox" id="product2" name="product" value="myProduct2.png" onchange="updateOverlay()">
+                <label for="product2">Product 2</label>
+            </div>
+            <div>
+                <input type="checkbox" id="product3" name="product" value="myProduct3.png" onchange="updateOverlay()">
+                <label for="product3">Product 3</label>
+            </div>
         </div>
         <div class="production-environment">
             <div class="image-container">
