@@ -26,9 +26,9 @@ body {
 
 #overlay {
     position: absolute;
-    top: 50%;
+    top: 25%; /* Position midway between the middle and the top */
     left: 50%;
-    width: 10%;
+    width: 15%; /* 10% + 5% = 15% */
     height: auto;
     transform: translate(-50%, -50%);
     object-fit: contain;
