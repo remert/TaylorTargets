@@ -50,10 +50,12 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 10%; /* Match the size of the product image */
+    height: auto;
 }
 
 .overlay {
-    width: 10%; /* 15% - 5% = 10% */
+    width: 100%; /* Ensure the overlay image fills the container */
     height: auto;
     object-fit: contain;
     opacity: 0.7;
