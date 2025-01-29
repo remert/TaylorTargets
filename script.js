@@ -97,3 +97,10 @@ function updateTable(productId, change) {
     for (const id in productQuantities) {
         const row = document.createElement('tr');
         const productNameCell = document.createElement('td');
+        productNameCell.textContent = products[id].name;
+        const quantityCell = document.createElement('td');
+        quantityCell.textContent = productQuantities[id];
+        const priceCell = document.createElement('td');
+        priceCell.textContent = `$${products[id].price * productQuantities[id]}`;
+
+        row.append
