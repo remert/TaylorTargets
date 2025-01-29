@@ -96,4 +96,4 @@ function updateTable(productId, change) {
 
     for (const id in productQuantities) {
         const row = document.createElement('tr');
-        const
+        const productNameCell = document.createElement('td');
