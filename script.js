@@ -14,7 +14,7 @@ function drop(event) {
     overlayImage.src = product.src;
     overlayImage.className = 'overlay';
     
-    // Calculate the grid position
+    grid position
     const gridSize = 50; // Adjust grid size as needed
     const rect = event.target.getBoundingClientRect();
     const x = event.clientX - rect.left;
