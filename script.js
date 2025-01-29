@@ -58,7 +58,7 @@ function drop(event) {
     overlayContainer.style.top = `${gridY}px`;
     overlayContainer.style.transform = 'translate(-50%, -50%)';
 
-    document.getElementById('overlays').appendChild(overlayContainer);
+    document.getElementById('canvas').appendChild(overlayContainer);
     updateTable(data, 1);
 }
 
@@ -74,4 +74,12 @@ function dropOverlay(event) {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
     const gridX = Math.round(x / gridSize) * gridSize;
-    const gridY = Math.round(y / grid
+    const gridY = Math.round(y / gridSize) * gridSize;
+
+    overlayContainer.style.left = `${gridX}px`;
+    overlayContainer.style.top = `${gridY}px`;
+    overlayContainer.style.transform = 'translate(-50%, -50%)';
+}
+
+function updateTable(productId, change) {
+    if (!productQuantities[productId
