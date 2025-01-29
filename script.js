@@ -1,3 +1,11 @@
+const products = {
+    product1: { name: 'Product 1', price: 10 },
+    product2: { name: 'Product 2', price: 20 },
+    product3: { name: 'Product 3', price: 30 }
+};
+
+const productQuantities = {};
+
 function allowDrop(event) {
     event.preventDefault();
 }
@@ -31,6 +39,7 @@ function drop(event) {
     removeButton.onclick = () => {
         if (confirm('Are you sure you want to remove this item?')) {
             overlayContainer.remove();
+            updateTable(data, -1);
         }
     };
 
@@ -50,6 +59,7 @@ function drop(event) {
     overlayContainer.style.transform = 'translate(-50%, -50%)';
 
     document.getElementById('overlays').appendChild(overlayContainer);
+    updateTable(data, 1);
 }
 
 function dragOverlay(event) {
@@ -70,3 +80,19 @@ function dropOverlay(event) {
     overlayContainer.style.top = `${gridY}px`;
     overlayContainer.style.transform = 'translate(-50%, -50%)';
 }
+
+function updateTable(productId, change) {
+    if (!productQuantities[productId]) {
+        productQuantities[productId] = 0;
+    }
+    productQuantities[productId] += change;
+
+    if (productQuantities[productId] <= 0) {
+        delete productQuantities[productId];
+    }
+
+    const tableBody = document.querySelector('#productTable tbody');
+    tableBody.innerHTML = '';
+
+    for (const id in productQuantities) {
+        const row =
