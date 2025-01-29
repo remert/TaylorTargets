@@ -10,10 +10,25 @@ function drop(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData("text");
     const product = document.getElementById(data);
+    const overlayContainer = document.createElement('div');
+    overlayContainer.className = 'overlay-container';
+
     const overlayImage = document.createElement('img');
     overlayImage.src = product.src;
     overlayImage.className = 'overlay';
-    
+
+    const removeButton = document.createElement('button');
+    removeButton.className = 'remove-button';
+    removeButton.innerHTML = 'x';
+    removeButton.onclick = () => {
+        if (confirm('Are you sure you want to remove this item?')) {
+            overlayContainer.remove();
+        }
+    };
+
+    overlayContainer.appendChild(overlayImage);
+    overlayContainer.appendChild(removeButton);
+
     // Calculate the grid position
     const gridSize = 50; // Adjust grid size as needed
     const rect = event.target.getBoundingClientRect();
@@ -22,9 +37,9 @@ function drop(event) {
     const gridX = Math.round(x / gridSize) * gridSize;
     const gridY = Math.round(y / gridSize) * gridSize;
 
-    overlayImage.style.left = `${gridX}px`;
-    overlayImage.style.top = `${gridY}px`;
-    overlayImage.style.transform = 'translate(-50%, -50%)';
-    
-    document.getElementById('overlays').appendChild(overlayImage);
+    overlayContainer.style.left = `${gridX}px`;
+    overlayContainer.style.top = `${gridY}px`;
+    overlayContainer.style.transform = 'translate(-50%, -50%)';
+
+    document.getElementById('overlays').appendChild(overlayContainer);
 }
