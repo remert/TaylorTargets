@@ -74,31 +74,4 @@ function dropOverlay(event) {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
     const gridX = Math.round(x / gridSize) * gridSize;
-    const gridY = Math.round(y / gridSize) * gridSize;
-
-    overlayContainer.style.left = `${gridX}px`;
-    overlayContainer.style.top = `${gridY}px`;
-    overlayContainer.style.transform = 'translate(-50%, -50%)';
-}
-
-function updateTable(productId, change) {
-    if (!productQuantities[productId]) {
-        productQuantities[productId] = 0;
-    }
-    productQuantities[productId] += change;
-
-    if (productQuantities[productId] <= 0) {
-        delete productQuantities[productId];
-    }
-
-    const tableBody = document.querySelector('#productTable tbody');
-    tableBody.innerHTML = '';
-
-    for (const id in productQuantities) {
-        const row = document.createElement('tr');
-        const productNameCell = document.createElement('td');
-        productNameCell.textContent = products[id].name;
-        const quantityCell = document.createElement('td');
-        quantityCell.textContent = productQuantities[id];
-        const priceCell = document.createElement('td');
-        priceCell.textContent = `$${products[id].price * productQuantities
+    const gridY = Math.round(y / grid
