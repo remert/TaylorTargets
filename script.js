@@ -53,12 +53,12 @@ function drop(event) {
 }
 
 function dragOverlay(event) {
-    event.dataTransfer.setData("text", event.target.id);
+    event.dataTransfer.setData("text", event.target.parentElement.id);
 }
 
 function dropOverlay(event) {
     event.preventDefault();
-    const overlayContainer = event.target.closest('.overlay-container');
+    const overlayContainer = document.getElementById(event.dataTransfer.getData("text"));
     const gridSize = 50; // Adjust grid size as needed
     const rect = overlayContainer.parentElement.getBoundingClientRect();
     const x = event.clientX - rect.left;
