@@ -47,12 +47,16 @@ h1 {
 
 .overlay {
     position: absolute;
-    top: 25%; /* Position midway between the middle and the top */
     width: 10%; /* 15% - 5% = 10% */
     height: auto;
     object-fit: contain;
     opacity: 0.7;
     pointer-events: none; /* Ensure the overlay image doesn't interfere with interactions */
+}
+
+.draggable {
+    width: 50px;
+    cursor: grab;
 }
 
 /* Media Queries for Responsive Design */
