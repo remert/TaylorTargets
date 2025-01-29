@@ -14,30 +14,28 @@ h1 {
 
 .container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .product-selection {
     margin: 20px;
     text-align: left;
-    flex: 0 0 200px; /* Fixed width for the product selector */
+    width: 200px; /* Fixed width for the product selector */
 }
 
 .production-environment {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1; /* Take up the remaining space */
+    width: 100%;
 }
 
 .image-container {
     position: relative;
     width: 100%;
-    max-width: 1000px; /* Increase the max-width to make the environment image bigger */
-    margin-left: -50px; /* Shift the image slightly to the left */
+    max-width: 1000px; /* Ensure the environment image remains large */
 }
 
 #environment {
@@ -117,14 +115,12 @@ h1 {
     }
 
     .product-selection {
-        flex: 0 0 auto; /* Allow the product selector to resize */
         width: 100%; /* Full width on smaller screens */
         margin: 10px 0; /* Adjust margin for better spacing */
     }
 
     .image-container {
         max-width: 90%; /* Reduce max-width for smaller screens */
-        margin-left: 0; /* Remove left margin */
     }
 
     .overlay-container {
