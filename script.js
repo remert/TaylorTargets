@@ -81,5 +81,4 @@ function dropOverlay(event) {
     overlayContainer.style.transform = 'translate(-50%, -50%)';
 }
 
-function updateTable(productId, change) {
-    if (!productQuantities[productId
+function updateTable(productId
