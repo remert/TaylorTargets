@@ -89,6 +89,26 @@ h1 {
     border: 2px solid orange; /* Highlight with hunter orange */
 }
 
+.product-table {
+    margin-top: 20px;
+    width: 80%;
+}
+
+.product-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-table th, .product-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.product-table th {
+    background-color: #f2f2f2;
+}
+
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
     .container {
