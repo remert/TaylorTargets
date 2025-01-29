@@ -61,8 +61,8 @@ h1 {
 
 .remove-button {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -10px; /* Adjusted to be closer to the top right corner */
+    right: -10px; /* Adjusted to be closer to the top right corner */
     background-color: red;
     color: white;
     border: none;
