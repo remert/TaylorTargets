@@ -4,6 +4,11 @@ function allowDrop(event) {
 
 function drag(event) {
     event.dataTransfer.setData("text", event.target.id);
+    event.target.classList.add('highlight'); // Add highlight class
+}
+
+function removeHighlight(event) {
+    event.target.classList.remove('highlight'); // Remove highlight class
 }
 
 function drop(event) {
