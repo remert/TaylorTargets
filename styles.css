@@ -45,20 +45,18 @@ h1 {
     height: auto;
 }
 
-.overlay {
-    position: absolute;
-    width: 10%; /* 15% - 5% = 10% */
-    height: auto;
-    object-fit: contain;
-    opacity: 0.7;
-    cursor: pointer; /* Change cursor to pointer for clickable overlays */
-}
-
 .overlay-container {
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.overlay {
+    width: 10%; /* 15% - 5% = 10% */
+    height: auto;
+    object-fit: contain;
+    opacity: 0.7;
 }
 
 .remove-button {
