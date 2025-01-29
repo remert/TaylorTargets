@@ -95,4 +95,5 @@ function updateTable(productId, change) {
     tableBody.innerHTML = '';
 
     for (const id in productQuantities) {
-        const row =
+        const row = document.createElement('tr');
+        const
