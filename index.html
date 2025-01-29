@@ -9,6 +9,20 @@
 <body>
     <h1>Product Overlay</h1>
     <div class="container">
+        <div class="controls">
+            <label for="numLanes">Number of Lanes:</label>
+            <input type="number" id="numLanes" min="1" value="1">
+            <label for="laneWidth">Lane Width (px):</label>
+            <input type="number" id="laneWidth" min="50" value="100">
+            <label for="laneDistance">Lane Distance (px):</label>
+            <input type="number" id="laneDistance" min="100" value="500">
+            <button onclick="createLanes()">Create Lanes</button>
+        </div>
+        <div class="production-environment">
+            <div class="canvas-container" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div id="canvas"></div>
+            </div>
+        </div>
         <div class="product-selection">
             <label>Select products:</label>
             <div>
@@ -22,12 +36,6 @@
             <div>
                 <img src="myProduct3.png" id="product3" class="draggable" draggable="true" ondragstart="drag(event)" ondragend="removeHighlight(event)">
                 <label for="product3">Product 3</label>
-            </div>
-        </div>
-        <div class="production-environment">
-            <div class="image-container" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <img id="environment" src="myEnvironment.jpg" alt="Production Environment">
-                <div id="overlays"></div>
             </div>
         </div>
         <div class="product-table">
