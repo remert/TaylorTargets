@@ -19,10 +19,9 @@ h1 {
     width: 100%;
 }
 
-.product-selection {
+.controls {
     margin: 20px;
     text-align: left;
-    width: 200px; /* Fixed width for the product selector */
 }
 
 .production-environment {
@@ -32,15 +31,25 @@ h1 {
     width: 100%;
 }
 
-.image-container {
+.canvas-container {
     position: relative;
     width: 100%;
-    max-width: 1000px; /* Ensure the environment image remains large */
+    max-width: 1000px; /* Ensure the canvas remains large */
+    height: 600px; /* Set a fixed height for the canvas */
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
 }
 
-#environment {
+#canvas {
+    position: relative;
     width: 100%;
-    height: auto;
+    height: 100%;
+}
+
+.lane {
+    position: absolute;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
 }
 
 .overlay-container {
@@ -114,12 +123,12 @@ h1 {
         align-items: center;
     }
 
-    .product-selection {
+    .controls {
         width: 100%; /* Full width on smaller screens */
         margin: 10px 0; /* Adjust margin for better spacing */
     }
 
-    .image-container {
+    .canvas-container {
         max-width: 90%; /* Reduce max-width for smaller screens */
     }
 
