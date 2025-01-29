@@ -7,25 +7,25 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Taylor Targets Range Builder MVP</h1>
+    <h1>Product Overlay</h1>
     <div class="container">
         <div class="product-selection">
             <label>Select products:</label>
             <div>
-                <input type="checkbox" id="product1" name="product" value="myProduct1.png" onchange="updateOverlay()">
+                <img src="myProduct1.png" id="product1" class="draggable" draggable="true" ondragstart="drag(event)">
                 <label for="product1">Product 1</label>
             </div>
             <div>
-                <input type="checkbox" id="product2" name="product" value="myProduct2.png" onchange="updateOverlay()">
+                <img src="myProduct2.png" id="product2" class="draggable" draggable="true" ondragstart="drag(event)">
                 <label for="product2">Product 2</label>
             </div>
             <div>
-                <input type="checkbox" id="product3" name="product" value="myProduct3.png" onchange="updateOverlay()">
+                <img src="myProduct3.png" id="product3" class="draggable" draggable="true" ondragstart="drag(event)">
                 <label for="product3">Product 3</label>
             </div>
         </div>
         <div class="production-environment">
-            <div class="image-container">
+            <div class="image-container" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <img id="environment" src="myEnvironment.jpg" alt="Production Environment">
                 <div id="overlays"></div>
             </div>
