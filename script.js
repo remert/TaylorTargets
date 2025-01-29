@@ -58,7 +58,7 @@ function dragOverlay(event) {
 
 function dropOverlay(event) {
     event.preventDefault();
-    const overlayContainer = event.target;
+    const overlayContainer = event.target.closest('.overlay-container');
     const gridSize = 50; // Adjust grid size as needed
     const rect = overlayContainer.parentElement.getBoundingClientRect();
     const x = event.clientX - rect.left;
