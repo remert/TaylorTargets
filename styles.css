@@ -108,7 +108,11 @@ h1 {
     }
 
     .overlay {
-        width: 15%; /* 20% - 5% = 15% */
+        width: 20%; /* Increase the size of the overlay images on smaller screens */
         top: 25%; /* Ensure the vertical position remains the same */
+    }
+
+    .draggable {
+        width: 80px; /* Increase the size of the product images on smaller screens */
     }
 }
