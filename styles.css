@@ -83,6 +83,10 @@ h1 {
     cursor: grab;
 }
 
+.draggable.highlight {
+    border: 2px solid orange; /* Highlight with hunter orange */
+}
+
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
     .container {
