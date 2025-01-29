@@ -107,9 +107,8 @@ h1 {
         margin-left: 0; /* Remove left margin */
     }
 
-    .overlay {
-        width: 20%; /* Increase the size of the overlay images on smaller screens */
-        top: 25%; /* Ensure the vertical position remains the same */
+    .overlay-container {
+        width: 20%; /* Increase the size of the overlay container on smaller screens */
     }
 
     .draggable {
