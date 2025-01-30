@@ -7,7 +7,7 @@ function createLanes() {
     const canvas = document.getElementById('canvas');
     canvas.innerHTML = ''; // Clear previous lanes
 
-    const canvasHeight = canvas.offsetHeight;
+    const canvasHeight = canvas.offsetHeight - 50; // Adjusted to provide space at the top
     const laneHeight = `${laneWidth * 10}px`; // Adjusted height for the lane (previously width)
     const totalLaneHeight = (laneDistance * 10) + parseInt(laneHeight); // 10px margin between lanes + lane height
 
@@ -21,6 +21,17 @@ function createLanes() {
         lane.style.left = '0px';
         lane.style.border = '1px solid black';
         canvas.appendChild(lane);
+
+        // Add selection box below each lane for distance modification
+        const selectionBox = document.createElement('input');
+        selectionBox.type = 'number';
+        selectionBox.className = 'distance-selector';
+        selectionBox.value = laneDistance; 
+        selectionBox.min = 1;
+        selectionBox.addEventListener('change', (event) => {
+            lane.style.bottom = `${event.target.value * 10}px`; // Adjust lane distance based on user input
+        });
+        lane.appendChild(selectionBox);
     }
 
     // Add bold separating line at the bottom
@@ -93,8 +104,8 @@ function drop(event) {
     // Calculate the grid position
     const gridSize = 50; // Adjust grid size as needed
     const rect = event.target.getBoundingClientRect();
-    const x = event.touches[0].clientX - rect.left;
-    const y = event.touches[0].clientY - rect.top;
+    const x = event.touches[0] ? event.touches[0].clientX - rect.left : event.clientX - rect.left;
+    const y = event.touches[0] ? event.touches[0].clientY - rect.top : event.clientY - rect.top;
     const gridX = Math.round(x / gridSize) * gridSize;
     const gridY = Math.round(y / gridSize) * gridSize;
 
