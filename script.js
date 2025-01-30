@@ -7,38 +7,43 @@ function createLanes() {
     const canvas = document.getElementById('canvas');
     canvas.innerHTML = ''; // Clear previous lanes
 
-    const laneHeight = `${laneWidth * 10}px`; // Adjusted height for the lane (previously width)
-    const totalLaneHeight = parseInt(laneHeight) + parseInt(laneDistance); // Adjusted to provide proper spacing
+    const laneHeight = `${laneDistance * 10}px`; // Adjusted height for the lane based on the distance in yards
+    const totalLaneWidth = parseInt(laneWidth * 10); // Set lane width based on the width in yards
 
     for (let i = 0; i < numLanes; i++) {
         const lane = document.createElement('div');
         lane.className = 'lane';
-        lane.style.height = laneHeight; // Fixed height for the lane
-        lane.style.width = `${canvas.offsetWidth}px`; // Full width of canvas
+        lane.style.width = `${totalLaneWidth}px`; // Fixed width for the lane
+        lane.style.height = '100%'; // Full height of canvas
         lane.style.position = 'absolute';
-        lane.style.top = `${i * totalLaneHeight}px`; // Adjust to fit within canvas height
-        lane.style.left = '0px';
+        lane.style.left = `${i * (totalLaneWidth + 10)}px`; // Adjust to fit within canvas width with some spacing
+        lane.style.top = '0px';
         lane.style.border = '1px solid black';
         canvas.appendChild(lane);
 
-        // Add selection box below each lane for distance modification
+        // Add selection box at the bottom for distance modification
         const selectionBox = document.createElement('div');
         selectionBox.className = 'distance-selector';
+        selectionBox.style.position = 'absolute';
+        selectionBox.style.bottom = '0px';
+        selectionBox.style.width = '100%';
+        selectionBox.style.display = 'flex';
+        selectionBox.style.justifyContent = 'space-between';
 
         const minusButton = document.createElement('button');
         minusButton.innerHTML = '-';
         minusButton.onclick = () => {
-            const currentDistance = parseInt(lane.style.top);
-            const newDistance = Math.max(0, currentDistance - 10);
-            lane.style.top = `${newDistance}px`;
+            const currentHeight = parseInt(lane.style.height);
+            const newHeight = Math.max(0, currentHeight - 10);
+            lane.style.height = `${newHeight}px`;
         };
 
         const plusButton = document.createElement('button');
         plusButton.innerHTML = '+';
         plusButton.onclick = () => {
-            const currentDistance = parseInt(lane.style.top);
-            const newDistance = currentDistance + 10;
-            lane.style.top = `${newDistance}px`;
+            const currentHeight = parseInt(lane.style.height);
+            const newHeight = currentHeight + 10;
+            lane.style.height = `${newHeight}px`;
         };
 
         selectionBox.appendChild(minusButton);
@@ -46,15 +51,8 @@ function createLanes() {
         lane.appendChild(selectionBox);
     }
 
-    // Add bold separating line at the bottom
-    const separatingLine = document.createElement('div');
-    separatingLine.style.position = 'absolute';
-    separatingLine.style.bottom = '0';
-    separatingLine.style.left = '0';
-    separatingLine.style.width = '100%';
-    separatingLine.style.height = '5px';
-    separatingLine.style.backgroundColor = 'black';
-    canvas.appendChild(separatingLine);
+    // Add outer border to the canvas
+    canvas.style.border = '2px solid black';
 }
 
 function clearLanes() {
