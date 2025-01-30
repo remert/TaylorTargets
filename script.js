@@ -1,3 +1,5 @@
+let selectedProduct = null;
+
 function createLanes() {
     const numLanes = document.getElementById('numLanes').value;
     const laneWidth = document.getElementById('laneWidth').value;
@@ -18,10 +20,12 @@ function createLanes() {
     }
 }
 
-function drag(event) {
-    event.preventDefault(); // Prevent default to avoid opening the image URL
-    event.dataTransfer.setData("text", event.target.id);
-    event.target.classList.add('highlight'); // Add highlight class
+function selectProduct(event) {
+    if (selectedProduct) {
+        selectedProduct.classList.remove('highlight');
+    }
+    selectedProduct = event.target;
+    selectedProduct.classList.add('highlight');
 }
 
 function allowDrop(event) {
@@ -29,18 +33,15 @@ function allowDrop(event) {
 }
 
 function drop(event) {
-    event.preventDefault();
-    const data = event.dataTransfer.getData("text");
-    const product = document.getElementById(data);
+    if (!selectedProduct) return;
+
     const lane = document.querySelector('.lane'); // Assuming all lanes have the same width
     const overlayContainer = document.createElement('div');
     overlayContainer.className = 'overlay-container';
-    overlayContainer.draggable = true; // Make the overlay container draggable
-    overlayContainer.ondragstart = dragOverlay; // Add drag start event
-    overlayContainer.ondragend = dropOverlay; // Add drag end event
+    overlayContainer.ontouchstart = selectProduct; // Allow re-selection
 
     const overlayImage = document.createElement('img');
-    overlayImage.src = product.src;
+    overlayImage.src = selectedProduct.src;
     overlayImage.className = 'overlay';
     overlayImage.style.width = lane.style.width; // Match the width of the lane
 
@@ -50,7 +51,7 @@ function drop(event) {
     removeButton.onclick = () => {
         if (confirm('Are you sure you want to remove this item?')) {
             overlayContainer.remove();
-            updateTable(data, -1);
+            updateTable(selectedProduct.id, -1);
         }
     };
 
@@ -60,8 +61,8 @@ function drop(event) {
     // Calculate the grid position
     const gridSize = 50; // Adjust grid size as needed
     const rect = event.target.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    const x = event.touches[0].clientX - rect.left;
+    const y = event.touches[0].clientY - rect.top;
     const gridX = Math.round(x / gridSize) * gridSize;
     const gridY = Math.round(y / gridSize) * gridSize;
 
@@ -70,24 +71,16 @@ function drop(event) {
     overlayContainer.style.transform = 'translate(-50%, -50%)';
 
     document.getElementById('canvas').appendChild(overlayContainer);
-    updateTable(data, 1);
+    updateTable(selectedProduct.id, 1);
+
+    selectedProduct.classList.remove('highlight');
+    selectedProduct = null;
 }
 
-function dragOverlay(event) {
-    event.dataTransfer.setData("text", event.target.parentElement.id);
-}
+// Add event listeners to product images for touch events
+document.querySelectorAll('.draggable').forEach(img => {
+    img.ontouchstart = selectProduct;
+});
 
-function dropOverlay(event) {
-    event.preventDefault();
-    const overlayContainer = document.getElementById(event.dataTransfer.getData("text"));
-    const lane = document.querySelector('.lane'); // Assuming all lanes have the same width
-    const rect = overlayContainer.parentElement.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    const gridX = lane.offsetWidth; // Snap to the end of the lane
-    const gridY = Math.round(y / gridSize) * gridSize;
-
-    overlayContainer.style.left = `${gridX}px`;
-    overlayContainer.style.top = `${gridY}px`;
-    overlayContainer.style.transform = 'translate(-50%, -50%)';
-}
+// Add event listener to canvas for placing product images
+document.getElementById('canvas').ontouchstart = placeProduct;
