@@ -82,9 +82,11 @@ function dropOverlay(event) {
 }
 
 function updateTable(productId, change) {
-    if
-    {
-    // Existing function content
+    if (!productQuantities[productId]) {
+        productQuantities[productId] = 0;
+    }
+    productQuantities[productId] += change;
+    document.getElementById('quantity-' + productId).innerText = productQuantities[productId];
 }
 
 function createLanes() {
