@@ -18,7 +18,7 @@
             <input type="number" id="laneDistance" min="1" value="5">
             <button onclick="createLanes()">Create Lanes</button>
         </div>
-       <div class="production-environment">
+        <div class="production-environment">
             <div class="canvas-container" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <div id="canvas"></div>
             </div>
@@ -26,15 +26,15 @@
         <div class="product-selection">
             <label>Select products:</label>
             <div>
-                <img src="myProduct1.png" id="product1" class="draggable" draggable="true" ondragstart="drag(event)" ondragend="removeHighlight(event)">
+                <img src="myProduct1.png" id="product1" class="draggable" draggable="true" ontouchstart="selectProduct">
                 <label for="product1">Product 1</label>
             </div>
             <div>
-                <img src="myProduct2.png" id="product2" class="draggable" draggable="true" ondragstart="drag(event)" ondragend="removeHighlight(event)">
+                <img src="myProduct2.png" id="product2" class="draggable" draggable="true" ontouchstart="selectProduct">
                 <label for="product2">Product 2</label>
             </div>
             <div>
-                <img src="myProduct3.png" id="product3" class="draggable" draggable="true" ondragstart="drag(event)" ondragend="removeHighlight(event)">
+                <img src="myProduct3.png" id="product3" class="draggable" draggable="true" ontouchstart="selectProduct">
                 <label for="product3">Product 3</label>
             </div>
         </div>
