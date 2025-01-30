@@ -95,8 +95,8 @@ function drop(event) {
     const overlayImage = document.createElement('img');
     overlayImage.src = selectedProduct.src;
     overlayImage.className = 'overlay';
-    overlayImage.style.width = '100%'; // Match the width of the lane
-    overlayImage.style.height = '100%'; // Maintain aspect ratio
+    overlayImage.style.width = '90%'; // Slightly smaller than the lane width
+    overlayImage.style.height = 'auto'; // Maintain aspect ratio
 
     const removeButton = document.createElement('button');
     removeButton.className = 'remove-button';
@@ -111,11 +111,17 @@ function drop(event) {
     overlayContainer.appendChild(overlayImage);
     overlayContainer.appendChild(removeButton);
 
-    // Center the overlay container within the lane
-    overlayContainer.style.position = 'absolute';
+    // Calculate the grid position
+    const gridSize = 50; // Adjust grid size as needed
+    const rect = event.target.getBoundingClientRect();
+    const x = event.touches[0] ? event.touches[0].clientX - rect.left : event.clientX - rect.left;
+    const y = event.touches[0] ? event.touches[0].clientY - rect.top : event.clientY - rect.top;
+    const gridX = Math.round(x / gridSize) * gridSize;
+    const gridY = y; // Allow vertical placement as chosen by the user
+
     overlayContainer.style.left = '50%';
-    overlayContainer.style.top = '50%';
-    overlayContainer.style.transform = 'translate(-50%, -50%)';
+    overlayContainer.style.top = `${gridY}px`;
+    overlayContainer.style.transform = 'translate(-50%, 0)';
 
     lane.appendChild(overlayContainer);
     updateTable(selectedProduct.id, 1);
