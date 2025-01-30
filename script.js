@@ -83,3 +83,26 @@ function dropOverlay(event) {
 
 function updateTable(productId, change) {
     if
+    {
+    // Existing function content
+}
+
+function createLanes() {
+    const numLanes = document.getElementById('numLanes').value;
+    const laneWidth = document.getElementById('laneWidth').value;
+    const laneDistance = document.getElementById('laneDistance').value;
+    const canvas = document.getElementById('canvas');
+    canvas.innerHTML = ''; // Clear previous lanes
+
+    for (let i = 0; i < numLanes; i++) {
+        const lane = document.createElement('div');
+        lane.className = 'lane';
+        lane.style.width = `${laneWidth * 10}px`; // Assuming 1 yard = 10px
+        lane.style.height = '50px'; // Fixed height for the lane
+        lane.style.position = 'absolute';
+        lane.style.top = `${i * (Number(laneDistance) * 10 + 10)}px`; // 10px margin between lanes
+        lane.style.left = '0px';
+        lane.style.border = '1px solid black';
+        canvas.appendChild(lane);
+    }
+}
