@@ -23,14 +23,27 @@ function createLanes() {
         canvas.appendChild(lane);
 
         // Add selection box below each lane for distance modification
-        const selectionBox = document.createElement('input');
-        selectionBox.type = 'number';
+        const selectionBox = document.createElement('div');
         selectionBox.className = 'distance-selector';
-        selectionBox.value = laneDistance; 
-        selectionBox.min = 1;
-        selectionBox.addEventListener('change', (event) => {
-            lane.style.bottom = `${event.target.value * 10}px`; // Adjust lane distance based on user input
-        });
+
+        const minusButton = document.createElement('button');
+        minusButton.innerHTML = '-';
+        minusButton.onclick = () => {
+            const currentDistance = parseInt(lane.style.bottom);
+            const newDistance = Math.max(0, currentDistance - 10);
+            lane.style.bottom = `${newDistance}px`;
+        };
+
+        const plusButton = document.createElement('button');
+        plusButton.innerHTML = '+';
+        plusButton.onclick = () => {
+            const currentDistance = parseInt(lane.style.bottom);
+            const newDistance = currentDistance + 10;
+            lane.style.bottom = `${newDistance}px`;
+        };
+
+        selectionBox.appendChild(minusButton);
+        selectionBox.appendChild(plusButton);
         lane.appendChild(selectionBox);
     }
 
