@@ -65,17 +65,16 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%; /* Match the width of the lane */
-    height: 100%; /* Match the height of the lane */
     overflow: hidden; /* Ensure any overflow is hidden */
 }
 
 .overlay {
-    width: 100%; /* Slightly smaller than the lane width */
+    width: 90%; /* Slightly smaller than the lane width */
     height: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Fit the image within the container */
     opacity: 0.7;
 }
+
 .remove-button {
     position: absolute;
     top: -10px; /* Adjusted to be closer to the top right corner */
