@@ -1,21 +1,11 @@
-function createLanes() {
-    const numLanes = document.getElementById('numLanes').value;
-    const laneWidth = document.getElementById('laneWidth').value;
-    const laneDistance = document.getElementById('laneDistance').value;
-    const canvas = document.getElementById('canvas');
-    canvas.innerHTML = ''; // Clear previous lanes
+function drag(event) {
+    event.preventDefault(); // Prevent default to avoid opening the image URL
+    event.dataTransfer.setData("text", event.target.id);
+    event.target.classList.add('highlight'); // Add highlight class
+}
 
-    for (let i = 0; i < numLanes; i++) {
-        const lane = document.createElement('div');
-        lane.className = 'lane';
-        lane.style.width = `${laneWidth * 10}px`; // Assuming 1 yard = 10px
-        lane.style.height = '50px'; // Fixed height for the lane
-        lane.style.position = 'absolute';
-        lane.style.top = `${i * (Number(laneDistance) * 10 + 10)}px`; // 10px margin between lanes
-        lane.style.left = '0px';
-        lane.style.border = '1px solid black';
-        canvas.appendChild(lane);
-    }
+function allowDrop(event) {
+    event.preventDefault();
 }
 
 function drop(event) {
@@ -61,6 +51,10 @@ function drop(event) {
 
     document.getElementById('canvas').appendChild(overlayContainer);
     updateTable(data, 1);
+}
+
+function dragOverlay(event) {
+    event.dataTransfer.setData("text", event.target.parentElement.id);
 }
 
 function dropOverlay(event) {
