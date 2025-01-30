@@ -8,16 +8,16 @@ function createLanes() {
     canvas.innerHTML = ''; // Clear previous lanes
 
     const canvasWidth = canvas.offsetWidth;
-    const laneHeight = 50; // Fixed height for the lane
-    const totalLaneWidth = laneWidth * 10 + laneDistance * 10; // 10px margin between lanes
+    const laneHeight = `${laneWidth * 10}px`; // Adjusted height for the lane (previously width)
+    const totalLaneWidth = (laneDistance * 10) + parseInt(laneHeight); // 10px margin between lanes + lane width
 
     for (let i = 0; i < numLanes; i++) {
         const lane = document.createElement('div');
         lane.className = 'lane';
-        lane.style.width = `${laneHeight}px`; // Fixed width for the lane (now height)
-        lane.style.height = `${laneWidth * 10}px`; // Adjusted height for the lane (previously width)
+        lane.style.width = laneHeight; // Fixed width for the lane (now height)
+        lane.style.height = `${canvas.offsetHeight}px`; // Full height of canvas
         lane.style.position = 'absolute';
-        lane.style.left = `${(i * totalLaneWidth) % canvasWidth}px`; // Adjust to fit within canvas width
+        lane.style.left = `${i * totalLaneWidth}px`; // Adjust to fit within canvas width
         lane.style.top = '0px';
         lane.style.border = '1px solid black';
         canvas.appendChild(lane);
@@ -74,7 +74,8 @@ function drop(event) {
     const overlayImage = document.createElement('img');
     overlayImage.src = selectedProduct.src;
     overlayImage.className = 'overlay';
-    overlayImage.style.height = lane.style.height; // Match the height of the lane (previously width)
+    overlayImage.style.width = lane.style.width; // Match the width of the lane (previously height)
+    overlayImage.style.height = 'auto'; // Maintain aspect ratio
 
     const removeButton = document.createElement('button');
     removeButton.className = 'remove-button';
