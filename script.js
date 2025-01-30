@@ -112,15 +112,11 @@ function drop(event) {
     overlayContainer.appendChild(removeButton);
 
     // Calculate the grid position
-    const gridSize = 50; // Adjust grid size as needed
     const rect = event.target.getBoundingClientRect();
-    const x = event.touches[0] ? event.touches[0].clientX - rect.left : event.clientX - rect.left;
     const y = event.touches[0] ? event.touches[0].clientY - rect.top : event.clientY - rect.top;
-    const gridX = Math.round(x / gridSize) * gridSize;
-    const gridY = y; // Allow vertical placement as chosen by the user
 
     overlayContainer.style.left = '50%';
-    overlayContainer.style.top = `${gridY}px`;
+    overlayContainer.style.top = `${y}px`;
     overlayContainer.style.transform = 'translate(-50%, 0)';
 
     lane.appendChild(overlayContainer);
