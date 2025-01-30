@@ -83,4 +83,4 @@ document.querySelectorAll('.draggable').forEach(img => {
 });
 
 // Add event listener to canvas for placing product images
-document.getElementById('canvas').ontouchstart = placeProduct;
+document.getElementById('canvas').ontouchstart = drop;
