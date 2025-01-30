@@ -105,3 +105,53 @@ document.querySelectorAll('.draggable').forEach(img => {
 
 // Add event listener to canvas for placing product images
 document.getElementById('canvas').ontouchstart = drop;
+
+function updateTable(productId, quantityChange) {
+    const table = document.getElementById('productTable').getElementsByTagName('tbody')[0];
+    let row = document.getElementById(`row-${productId}`);
+
+    if (!row) {
+        row = table.insertRow();
+        row.id = `row-${productId}`;
+        const productName = row.insertCell(0);
+        const productQty = row.insertCell(1);
+        const productPrice = row.insertCell(2);
+        productName.innerHTML = document.getElementById(productId).alt;
+        productQty.innerHTML = 0;
+        productPrice.innerHTML = '$0.00'; // Placeholder, update with actual price
+    }
+
+    const qtyCell = row.cells[1];
+    const newQty = Math.max(0, parseInt(qtyCell.innerHTML) + quantityChange);
+    qtyCell.innerHTML = newQty;
+
+    if (newQty === 0) {
+        row.remove();
+    }
+}
+
+function completeRangeBuild() {
+    const products = document.querySelectorAll('.overlay');
+    const tableData = {};
+
+    products.forEach(product => {
+        const productId = product.src.split('/').pop().split('.')[0];
+        if (!tableData[productId]) {
+            tableData[productId] = { name: productId, quantity: 0, price: 0 }; // Update with actual data as needed
+        }
+        tableData[productId].quantity += 1;
+    });
+
+    const table = document.getElementById('productTable').getElementsByTagName('tbody')[0];
+    table.innerHTML = ''; // Clear existing rows
+
+    Object.keys(tableData).forEach(productId => {
+        const row = table.insertRow();
+        const productName = row.insertCell(0);
+        const productQty = row.insertCell(1);
+        const productPrice = row.insertCell(2);
+        productName.innerHTML = tableData[productId].name;
+        productQty.innerHTML = tableData[productId].quantity;
+        productPrice.innerHTML = `$${tableData[productId].price.toFixed(2)}`; // Update with actual price
+    });
+}
