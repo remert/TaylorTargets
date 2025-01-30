@@ -7,17 +7,31 @@ function createLanes() {
     const canvas = document.getElementById('canvas');
     canvas.innerHTML = ''; // Clear previous lanes
 
+    const canvasHeight = canvas.offsetHeight;
+    const laneHeight = 50; // Fixed height for the lane
+    const totalLaneHeight = laneHeight + laneDistance * 10; // 10px margin between lanes
+
     for (let i = 0; i < numLanes; i++) {
         const lane = document.createElement('div');
         lane.className = 'lane';
         lane.style.width = `${laneWidth * 10}px`; // Assuming 1 yard = 10px
-        lane.style.height = '50px'; // Fixed height for the lane
+        lane.style.height = `${laneHeight}px`; // Fixed height for the lane
         lane.style.position = 'absolute';
-        lane.style.top = `${i * (Number(laneDistance) * 10 + 10)}px`; // 10px margin between lanes
+        lane.style.top = `${(i * totalLaneHeight) % canvasHeight}px`; // Adjust to fit within canvas height
         lane.style.left = '0px';
         lane.style.border = '1px solid black';
         canvas.appendChild(lane);
     }
+}
+
+function clearLanes() {
+    const canvas = document.getElementById('canvas');
+    canvas.innerHTML = '';
+}
+
+function clearProducts() {
+    const overlays = document.querySelectorAll('.overlay-container');
+    overlays.forEach(overlay => overlay.remove());
 }
 
 function selectProduct(event) {
