@@ -58,12 +58,12 @@ h1 {
     align-items: center;
     justify-content: center;
     width: 100%; /* Match the width of the lane */
-    height: auto;
+    height: 50px; /* Match the fixed height of the lane */
 }
 
 .overlay {
     width: 100%; /* Ensure the overlay image fills the container */
-    height: auto;
+    height: 100%; /* Ensure the overlay image fills the lane height */
     object-fit: contain;
     opacity: 0.7;
 }
