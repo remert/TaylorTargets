@@ -38,7 +38,7 @@ function drop(event) {
     const lane = document.querySelector('.lane'); // Assuming all lanes have the same width
     const overlayContainer = document.createElement('div');
     overlayContainer.className = 'overlay-container';
-    overlayContainer.ontouchstart = selectProduct; // Allow re-selection
+    overlayContainer.ontouchstart = event => event.stopPropagation(); // Prevent re-selection during drop
 
     const overlayImage = document.createElement('img');
     overlayImage.src = selectedProduct.src;
