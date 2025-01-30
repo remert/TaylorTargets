@@ -1,28 +1,28 @@
-const products = {
-    product1: { name: 'Product 1', price: 10 },
-    product2: { name: 'Product 2', price: 20 },
-    product3: { name: 'Product 3', price: 30 }
-};
+function createLanes() {
+    const numLanes = document.getElementById('numLanes').value;
+    const laneWidth = document.getElementById('laneWidth').value;
+    const laneDistance = document.getElementById('laneDistance').value;
+    const canvas = document.getElementById('canvas');
+    canvas.innerHTML = ''; // Clear previous lanes
 
-const productQuantities = {};
-
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-function drag(event) {
-    event.dataTransfer.setData("text", event.target.id);
-    event.target.classList.add('highlight'); // Add highlight class
-}
-
-function removeHighlight(event) {
-    event.target.classList.remove('highlight'); // Remove highlight class
+    for (let i = 0; i < numLanes; i++) {
+        const lane = document.createElement('div');
+        lane.className = 'lane';
+        lane.style.width = `${laneWidth * 10}px`; // Assuming 1 yard = 10px
+        lane.style.height = '50px'; // Fixed height for the lane
+        lane.style.position = 'absolute';
+        lane.style.top = `${i * (Number(laneDistance) * 10 + 10)}px`; // 10px margin between lanes
+        lane.style.left = '0px';
+        lane.style.border = '1px solid black';
+        canvas.appendChild(lane);
+    }
 }
 
 function drop(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData("text");
     const product = document.getElementById(data);
+    const lane = document.querySelector('.lane'); // Assuming all lanes have the same width
     const overlayContainer = document.createElement('div');
     overlayContainer.className = 'overlay-container';
     overlayContainer.draggable = true; // Make the overlay container draggable
@@ -32,6 +32,7 @@ function drop(event) {
     const overlayImage = document.createElement('img');
     overlayImage.src = product.src;
     overlayImage.className = 'overlay';
+    overlayImage.style.width = lane.style.width; // Match the width of the lane
 
     const removeButton = document.createElement('button');
     removeButton.className = 'remove-button';
@@ -62,49 +63,17 @@ function drop(event) {
     updateTable(data, 1);
 }
 
-function dragOverlay(event) {
-    event.dataTransfer.setData("text", event.target.parentElement.id);
-}
-
 function dropOverlay(event) {
     event.preventDefault();
     const overlayContainer = document.getElementById(event.dataTransfer.getData("text"));
-    const gridSize = 50; // Adjust grid size as needed
+    const lane = document.querySelector('.lane'); // Assuming all lanes have the same width
     const rect = overlayContainer.parentElement.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    const gridX = Math.round(x / gridSize) * gridSize;
+    const gridX = lane.offsetWidth; // Snap to the end of the lane
     const gridY = Math.round(y / gridSize) * gridSize;
 
     overlayContainer.style.left = `${gridX}px`;
     overlayContainer.style.top = `${gridY}px`;
     overlayContainer.style.transform = 'translate(-50%, -50%)';
-}
-
-function updateTable(productId, change) {
-    if (!productQuantities[productId]) {
-        productQuantities[productId] = 0;
-    }
-    productQuantities[productId] += change;
-    document.getElementById('quantity-' + productId).innerText = productQuantities[productId];
-}
-
-function createLanes() {
-    const numLanes = document.getElementById('numLanes').value;
-    const laneWidth = document.getElementById('laneWidth').value;
-    const laneDistance = document.getElementById('laneDistance').value;
-    const canvas = document.getElementById('canvas');
-    canvas.innerHTML = ''; // Clear previous lanes
-
-    for (let i = 0; i < numLanes; i++) {
-        const lane = document.createElement('div');
-        lane.className = 'lane';
-        lane.style.width = `${laneWidth * 10}px`; // Assuming 1 yard = 10px
-        lane.style.height = '50px'; // Fixed height for the lane
-        lane.style.position = 'absolute';
-        lane.style.top = `${i * (Number(laneDistance) * 10 + 10)}px`; // 10px margin between lanes
-        lane.style.left = '0px';
-        lane.style.border = '1px solid black';
-        canvas.appendChild(lane);
-    }
 }
