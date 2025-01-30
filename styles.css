@@ -51,14 +51,15 @@ h1 {
     background-color: #e0e0e0;
     border: 1px solid #ccc;
 }
-
+ 
 .overlay-container {
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 10%; /* Match the size of the product image */
+    width: 100%; /* Match the width of the lane */
     height: auto;
+}
 }
 
 .overlay {
