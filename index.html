@@ -15,7 +15,7 @@
             <label for="laneWidth">Lane Width (yards):</label>
             <input type="number" id="laneWidth" min="1" value="1">
             <label for="laneDistance">Lane Distance (yards):</label>
-            <input type="number" id="laneDistance" min="1" value="5">
+            <input type="number" id="laneDistance" min="1" value="25">
             <button onclick="createLanes()">Create Lanes</button>
             <button onclick="clearLanes()">Clear Lanes</button>
             <button onclick="clearProducts()">Clear Products</button>
@@ -53,8 +53,8 @@
                     <!-- Dynamic rows will be added here -->
                 </tbody>
             </table>
+            <button onclick="completeRangeBuild()">Complete Range Build</button>
         </div>
-        <button onclick="completeRangeBuild()">Complete Range Build</button>
     </div>
     <script src="script.js"></script>
 </body>
