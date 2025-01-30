@@ -7,21 +7,31 @@ function createLanes() {
     const canvas = document.getElementById('canvas');
     canvas.innerHTML = ''; // Clear previous lanes
 
-    const canvasHeight = canvas.offsetHeight;
+    const canvasWidth = canvas.offsetWidth;
     const laneHeight = 50; // Fixed height for the lane
-    const totalLaneHeight = laneHeight + laneDistance * 10; // 10px margin between lanes
+    const totalLaneWidth = laneWidth * 10 + laneDistance * 10; // 10px margin between lanes
 
     for (let i = 0; i < numLanes; i++) {
         const lane = document.createElement('div');
         lane.className = 'lane';
-        lane.style.width = `${laneWidth * 10}px`; // Assuming 1 yard = 10px
-        lane.style.height = `${laneHeight}px`; // Fixed height for the lane
+        lane.style.width = `${laneHeight}px`; // Fixed width for the lane (now height)
+        lane.style.height = `${laneWidth * 10}px`; // Adjusted height for the lane (previously width)
         lane.style.position = 'absolute';
-        lane.style.top = `${(i * totalLaneHeight) % canvasHeight}px`; // Adjust to fit within canvas height
-        lane.style.left = '0px';
+        lane.style.left = `${(i * totalLaneWidth) % canvasWidth}px`; // Adjust to fit within canvas width
+        lane.style.top = '0px';
         lane.style.border = '1px solid black';
         canvas.appendChild(lane);
     }
+
+    // Add bold separating line at the bottom
+    const separatingLine = document.createElement('div');
+    separatingLine.style.position = 'absolute';
+    separatingLine.style.bottom = '0';
+    separatingLine.style.left = '0';
+    separatingLine.style.width = '100%';
+    separatingLine.style.height = '5px';
+    separatingLine.style.backgroundColor = 'black';
+    canvas.appendChild(separatingLine);
 }
 
 function clearLanes() {
@@ -64,7 +74,7 @@ function drop(event) {
     const overlayImage = document.createElement('img');
     overlayImage.src = selectedProduct.src;
     overlayImage.className = 'overlay';
-    overlayImage.style.width = lane.style.width; // Match the width of the lane
+    overlayImage.style.height = lane.style.height; // Match the height of the lane (previously width)
 
     const removeButton = document.createElement('button');
     removeButton.className = 'remove-button';
