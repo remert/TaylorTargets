@@ -23,6 +23,10 @@ function createLanes() {
 function selectProduct(event) {
     if (selectedProduct) {
         selectedProduct.classList.remove('highlight');
+        if (selectedProduct === event.target) {
+            selectedProduct = null;
+            return;
+        }
     }
     selectedProduct = event.target;
     selectedProduct.classList.add('highlight');
@@ -35,7 +39,10 @@ function allowDrop(event) {
 function drop(event) {
     if (!selectedProduct) return;
 
-    const lane = document.querySelector('.lane'); // Assuming all lanes have the same width
+    const canvas = document.getElementById('canvas');
+    const lane = event.target.closest('.lane');
+    if (!lane || !canvas.contains(lane)) return;
+
     const overlayContainer = document.createElement('div');
     overlayContainer.className = 'overlay-container';
     overlayContainer.ontouchstart = event => event.stopPropagation(); // Prevent re-selection during drop
@@ -70,7 +77,7 @@ function drop(event) {
     overlayContainer.style.top = `${gridY}px`;
     overlayContainer.style.transform = 'translate(-50%, -50%)';
 
-    document.getElementById('canvas').appendChild(overlayContainer);
+    lane.appendChild(overlayContainer);
     updateTable(selectedProduct.id, 1);
 
     selectedProduct.classList.remove('highlight');
