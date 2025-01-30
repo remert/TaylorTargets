@@ -7,9 +7,8 @@ function createLanes() {
     const canvas = document.getElementById('canvas');
     canvas.innerHTML = ''; // Clear previous lanes
 
-    const canvasHeight = canvas.offsetHeight - 50; // Adjusted to provide space at the top
     const laneHeight = `${laneWidth * 10}px`; // Adjusted height for the lane (previously width)
-    const totalLaneHeight = (laneDistance * 10) + parseInt(laneHeight); // 10px margin between lanes + lane height
+    const totalLaneHeight = parseInt(laneHeight) + parseInt(laneDistance); // Adjusted to provide proper spacing
 
     for (let i = 0; i < numLanes; i++) {
         const lane = document.createElement('div');
@@ -17,7 +16,7 @@ function createLanes() {
         lane.style.height = laneHeight; // Fixed height for the lane
         lane.style.width = `${canvas.offsetWidth}px`; // Full width of canvas
         lane.style.position = 'absolute';
-        lane.style.bottom = `${i * totalLaneHeight}px`; // Adjust to fit within canvas height
+        lane.style.top = `${i * totalLaneHeight}px`; // Adjust to fit within canvas height
         lane.style.left = '0px';
         lane.style.border = '1px solid black';
         canvas.appendChild(lane);
@@ -29,17 +28,17 @@ function createLanes() {
         const minusButton = document.createElement('button');
         minusButton.innerHTML = '-';
         minusButton.onclick = () => {
-            const currentDistance = parseInt(lane.style.bottom);
+            const currentDistance = parseInt(lane.style.top);
             const newDistance = Math.max(0, currentDistance - 10);
-            lane.style.bottom = `${newDistance}px`;
+            lane.style.top = `${newDistance}px`;
         };
 
         const plusButton = document.createElement('button');
         plusButton.innerHTML = '+';
         plusButton.onclick = () => {
-            const currentDistance = parseInt(lane.style.bottom);
+            const currentDistance = parseInt(lane.style.top);
             const newDistance = currentDistance + 10;
-            lane.style.bottom = `${newDistance}px`;
+            lane.style.top = `${newDistance}px`;
         };
 
         selectionBox.appendChild(minusButton);
